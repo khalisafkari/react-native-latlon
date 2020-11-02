@@ -1,17 +1,27 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Latlon from 'react-native-latlon';
+import Latlon, { results } from 'react-native-latlon';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<results>({
+    city: '',
+    country: '',
+    lat: 0,
+    lon: 0,
+  });
 
   React.useEffect(() => {
-    Latlon.multiply(3, 7).then(setResult);
+    Latlon.getIp().then(setResult);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>
+        city: {result.city}
+        country: {result.country}
+        lat: {result.lat}
+        lon: {result.lon}
+      </Text>
     </View>
   );
 }

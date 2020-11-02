@@ -1,7 +1,14 @@
 import { NativeModules } from 'react-native';
 
+export type results = {
+  lon: number;
+  lat: number;
+  city: string;
+  country: string;
+};
+
 type LatlonType = {
-  multiply(a: number, b: number): Promise<number>;
+  getIp(): Promise<results>;
 };
 
 const { Latlon } = NativeModules;
