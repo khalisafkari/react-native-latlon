@@ -8,14 +8,27 @@ react native latlon by ip internet
 npm install react-native-latlon
 ```
 
+**use yarn**
+
+```sh
+yarn add react-native-latlon
+```
+
 ## Usage
 
-```js
-import Latlon from "react-native-latlon";
+```typescript jsx
+import Latlon,{ results } from "react-native-latlon";
 
-// ...
+interface results {
+  lon: number;
+  lat: number;
+  city: string;
+  country: string;
+};
 
-const result = await Latlon.multiply(3, 7);
+LatLon.getIp().then((results: results) => {console.log(results)})
+
+
 ```
 
 ## Contributing
