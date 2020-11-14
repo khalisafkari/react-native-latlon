@@ -1,6 +1,6 @@
 {
   "name": "react-native-latlon",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "react native latlon by ip internet",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
