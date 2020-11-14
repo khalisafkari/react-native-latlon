@@ -32,10 +32,10 @@ class LatlonModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
       val request = Request.Builder().url("https://api-geolocation.zeit.sh").build()
       val response = client.newCall(request).execute().body()!!.string()
       val parse = JSON.parseObject(response)
-      map.putString("country",parse.getString("country"))
-      map.putString("city",parse.getString("city"))
-      map.putDouble("lat",parse.getDouble("lat"))
-      map.putDouble("lon",parse.getDouble("lon"))
+      map.putString("country",parse.getString("country")?: "none")
+      map.putString("city",parse.getString("city")?: "none")
+      map.putDouble("lat",parse.getDouble("lat")?: 0.0)
+      map.putDouble("lon",parse.getDouble("lon")?: 0.0)
       return map
     }
 

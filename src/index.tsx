@@ -1,12 +1,25 @@
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
+const { Latlon } = NativeModules;
 export type results = {
   lon: number;
   lat: number;
   city: string;
   country: string;
 };
-type LatlonType = {
-  getIp(): Promise<results>;
+
+const getCountry = (): Promise<results> => {
+  if (Platform.OS === 'android') {
+    return new Promise<results>((resolve, reject) => {
+      Latlon.getIp().then(resolve).catch(reject);
+    });
+  } else {
+    return new Promise<results>((resolve, reject) => {
+      fetch('https://api-geolocation.zeit.sh')
+        .then((res) => res.json())
+        .then(resolve)
+        .catch(reject);
+    });
+  }
 };
-const { Latlon } = NativeModules;
-export default Latlon as LatlonType;
+
+export default getCountry();
