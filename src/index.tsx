@@ -7,7 +7,7 @@ export type results = {
   country: string;
 };
 
-const getCountry = (): Promise<results> => {
+const getCountry = () => {
   if (Platform.OS === 'android') {
     return new Promise<results>((resolve, reject) => {
       Latlon.getIp().then(resolve).catch(reject);
